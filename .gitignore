@@ -10,3 +10,4 @@ utils/env.py
 utils/setup_workdir.py
 .env
 langchain-Study.iml
+.vscode/settings.json
