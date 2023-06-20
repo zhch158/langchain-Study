@@ -1,5 +1,5 @@
 import os
-from langchain import OpenAI
+from langchain.chat_models import ChatOpenAI as OpenAI
 
 import openai
 from langchain.embeddings import HuggingFaceEmbeddings
@@ -24,7 +24,7 @@ logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 # 5. 通过query_engine.query(query)进行查询
 def get_data_level(query):
     # define LLM model
-    llm_model = LLMPredictor(llm=OpenAI(temperature=0, model_name="gpt-3.5-turbo", max_tokens=2048))
+    llm_model = LLMPredictor(llm=OpenAI(temperature=0, model_name="gpt-3.5-turbo-0613", max_tokens=4096))
     
     # embed_model = LangchainEmbedding(
         # HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-multilingual-mpnet-base-v2"))
@@ -40,7 +40,7 @@ def get_data_level(query):
     documents = [Document(text) for text in texts]
     index = VectorStoreIndex.from_documents(documents, service_context=service_context)
     index.storage_context.persist()
-    query_engine = index.as_query_engine(similarity_top_k=5)
+    query_engine = index.as_query_engine(similarity_top_k=3)
 
     result = query_engine.query(query)
     return result
