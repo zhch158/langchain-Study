@@ -1,0 +1,12 @@
+.vscode/launch.json
+study/storage/docstore.json
+study/storage/graph_store.json
+study/storage/index_store.json
+study/storage/vector_store.json
+utils/__pycache__/base.cpython-39.pyc
+utils/__pycache__/env.cpython-39.pyc
+utils/__pycache__/setup_workdir.cpython-39.pyc
+utils/env.py
+utils/setup_workdir.py
+.env
+langchain-Study.iml
