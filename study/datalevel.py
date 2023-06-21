@@ -24,7 +24,7 @@ logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 # 5. 通过query_engine.query(query)进行查询
 def get_data_level(query):
     # define LLM model
-    llm_model = LLMPredictor(llm=OpenAI(temperature=0, model_name="gpt-3.5-turbo-0613", max_tokens=4096))
+    llm_model = LLMPredictor(llm=OpenAI(temperature=0, model_name="gpt-3.5-turbo-0613", max_tokens=2048))
     
     # embed_model = LangchainEmbedding(
         # HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-multilingual-mpnet-base-v2"))
