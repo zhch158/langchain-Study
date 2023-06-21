@@ -37,7 +37,12 @@ def get_data_level(query):
 
     # documents = SimpleDirectoryReader(input_files=['data_level.txt']).load_data()
     texts = open('data_level.txt', 'r', encoding='utf-8').read().split('\n\n')
-    documents = [Document(text) for text in texts]
+    # 生成Document对象，过滤空文档
+    documents = list()
+    for text in texts:
+        text=text.strip()
+        if text != '':
+            documents.append(Document(text))
     index = VectorStoreIndex.from_documents(documents, service_context=service_context)
     index.storage_context.persist()
     query_engine = index.as_query_engine(similarity_top_k=3)
