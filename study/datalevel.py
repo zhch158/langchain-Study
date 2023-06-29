@@ -12,8 +12,8 @@ sys.path.insert(0, os.path.dirname(__file__) + "/..")
 from utils.base import setup_env, setup_workdir
 
 LOG_FORMAT = "%(levelname) -5s %(asctime)s" "-1d: %(message)s"
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format=LOG_FORMAT)
-logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format=LOG_FORMAT, encoding='utf-8')
+# logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
 
 # get_data_level函数说明如下：
@@ -44,7 +44,7 @@ def get_data_level(query):
         if text != '':
             documents.append(Document(text))
     index = VectorStoreIndex.from_documents(documents, service_context=service_context)
-    index.storage_context.persist()
+    # index.storage_context.persist()
     query_engine = index.as_query_engine(similarity_top_k=3)
 
     result = query_engine.query(query)
@@ -52,8 +52,9 @@ def get_data_level(query):
 
 
 if __name__ == '__main__':
-    # os.environ['OPENAI_API_KEY'] = "sk-xxxx"
+    # os.environ['OPENAI_API_KEY'] = ""
     # openai.api_key =  os.environ['OPENAI_API_KEY']
+
     setup_workdir(os.path.dirname(__file__))
     setup_env()
 
